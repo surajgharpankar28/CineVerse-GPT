@@ -9,6 +9,11 @@
   font-weight: 400;
   font-style: normal;
 }
+.kaushan-script-regular {
+  font-family: "Kaushan Script", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .fullscreen-bg {
   background-image: url("/public/body_bg.jpg"); /* Reference image from the public folder */

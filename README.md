@@ -4,6 +4,12 @@
 - Configured Tailwind CSS
 - Login form
 - Sign Up form
+- Form Validation
+- useRef Hook
+- Firebase Setup
+- Deploying our app to firebase
+
+
 # Features
 -   Login/Sign Up
     -   Login/Sign Up Form
