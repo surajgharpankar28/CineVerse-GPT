@@ -1,3 +1,20 @@
+/* Google Font for Cineverse title */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kaushan+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.fullscreen-bg {
+  background-image: url("/public/body_bg.jpg"); /* Reference image from the public folder */
+  background-size: cover; /* Cover the whole screen */
+  background-position: center; /* Center the background */
+  background-repeat: no-repeat; /* Prevent background from repeating */
+  height: 100vh; /* Full screen height */
+  width: 100vw; /* Full screen width */
+}
