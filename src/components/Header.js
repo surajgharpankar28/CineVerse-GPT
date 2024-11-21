@@ -1,5 +1,5 @@
 import React from "react";
-import userIcon from "../assests/images/userIcon.webp";
+import userIcon from "../assests/images/userIcon.jpg";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
