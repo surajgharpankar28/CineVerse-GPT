@@ -1,74 +1,108 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/slices/userSlice";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleSignUpForm = () => {
     setisSignInForm(!isSignInForm);
   };
 
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-  const name = useRef(null);
+
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleButtonClick = () => {
-    //Form Validation
+    // Validate the email and password fields using the checkValidData utility.
+    // If the fields are invalid, display an error message and exit the function.
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
 
-    //If Email-Password is Not valid
+    // Stop further execution if validation fails.
     if (message) {
       return;
     }
 
-    //For Sign-Up
+    // If the user is signing up (isSignInForm is false):
     if (!isSignInForm) {
+      // Create a new user with the provided email and password using Firebase Authentication.
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed up
+          // Retrieve the signed-up user object.
           const user = userCredential.user;
-          console.log("Sign Up Success");
-          // ...
+
+          // Update the user's profile with the provided name.
+          updateProfile(user, {
+            displayName: name.current.value,
+          })
+            .then(() => {
+              // After successfully updating the profile, extract the current user's details.
+              const { uid, email, displayName } = auth.currentUser;
+
+              // Dispatch the user details to a Redux store (or other state management tool).
+              dispatch(
+                addUser({ uid: uid, email: email, displayName: displayName })
+              );
+
+              // Navigate to the "/browse" page after successful sign-up.
+              navigate("/browse");
+              console.log("Sign Up Success");
+            })
+            .catch((error) => {
+              // Handle any errors that occur while updating the profile.
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
+          // Handle errors during the sign-up process (e.g., invalid email, weak password).
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
-          // ..
         });
     }
-    //For Sign-In
+    // If the user is signing in (isSignInForm is true):
     else {
+      // Authenticate the user with the provided email and password.
       signInWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
+          // Retrieve the signed-in user object.
+          const user = userCredential.user; // eslint-disable-line
+
+          // Navigate to the "/browse" page after successful sign-in.
           console.log("Login Success");
-          // ...
+          navigate("/browse");
         })
         .catch((error) => {
+          // Handle errors during the sign-in process (e.g., incorrect password).
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     }
 
+    // Log the validation message for debugging (if any).
     console.log(message);
   };
 
@@ -85,7 +119,7 @@ const Login = () => {
           </h1>
           {!isSignInForm ? (
             <input
-              useRef={name}
+              ref={name}
               type="text"
               placeholder="Full Name"
               className="p-4 my-4 w-full bg-gray-700"
@@ -120,7 +154,7 @@ const Login = () => {
             ""
           )}
           <button
-            className=" p-4 my-4 bg-red-600 rounded-lg font-semibold w-full"
+            className=" p-4 my-4 bg-yellow-400 text-black rounded-lg font-semibold w-full"
             onClick={handleButtonClick}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
