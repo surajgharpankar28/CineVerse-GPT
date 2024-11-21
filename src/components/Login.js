@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
@@ -11,14 +16,60 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
-
+  const name = useRef(null);
   const [errorMessage, setErrorMessage] = useState(null);
+
   const handleButtonClick = () => {
     //Form Validation
-    setErrorMessage(
-      checkValidData(email.current.value, password.current.value)
-    );
-    console.log(errorMessage);
+    const message = checkValidData(email.current.value, password.current.value);
+    setErrorMessage(message);
+
+    //If Email-Password is Not valid
+    if (message) {
+      return;
+    }
+
+    //For Sign-Up
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log("Sign Up Success");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+          // ..
+        });
+    }
+    //For Sign-In
+    else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("Login Success");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    }
+
+    console.log(message);
   };
 
   return (
@@ -34,6 +85,7 @@ const Login = () => {
           </h1>
           {!isSignInForm ? (
             <input
+              useRef={name}
               type="text"
               placeholder="Full Name"
               className="p-4 my-4 w-full bg-gray-700"
