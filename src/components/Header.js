@@ -4,7 +4,6 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/slices/userSlice";
-import { redUserIcon } from "../utils/constants";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -53,7 +52,7 @@ const Header = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex justify-between w-screen absolute bg-gradient-to-b from-black ">
+    <div className="flex z-10 justify-between w-screen absolute bg-gradient-to-b from-black ">
       <h1 className="bebas-neue-regular text-yellow-400 text-[5rem] px-4">
         CINEVERSE
       </h1>

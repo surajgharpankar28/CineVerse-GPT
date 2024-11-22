@@ -78,7 +78,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              console.log("Sign Up Success");
+              // console.log("Sign Up Success");
             })
             .catch((error) => {
               // Handle any errors that occur while updating the profile.
@@ -116,7 +116,7 @@ const Login = () => {
     }
 
     // Log the validation message for debugging (if any).
-    console.log(message);
+    // console.log(message);
   };
 
   return (

@@ -30,3 +30,14 @@ export const mapErrorMessage = (errorCode, defaultMessage) => {
   // Return mapped message or default Firebase error message
   return errorMessages[errorCode] || defaultMessage;
 };
+
+//API Options
+
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOGVlOTg4N2NhM2NmZjQ5ZDUzODE0ZjA2ZTg0NjEyZiIsIm5iZiI6MTczMjI2OTIwMS44OTg4NzUsInN1YiI6IjY3NDA1MjQzZGFlMmU2YTkzODI1NWNiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Jx3HF0kOPdou0O45MHOOkxFJElZsvbNX6lmi3XuEyxQ",
+  },
+};
