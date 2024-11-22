@@ -27,7 +27,7 @@ const Header = () => {
   // A user signs out.
   // The current user's ID token is refreshed.
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         //when user signIn/signUp
         const { uid, email, displayName } = user;
@@ -40,6 +40,9 @@ const Header = () => {
         navigate("/login");
       }
     });
+
+    //unsubscribe when component unmounts
+    return () => unsubscribe();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

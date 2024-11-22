@@ -89,7 +89,10 @@ const Login = () => {
           // Handle errors during the sign-in process (e.g., incorrect password).
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          if (errorCode === "auth/invalid-credential") {
+            setErrorMessage("invalid email/password");
+          }
+          // setErrorMessage(errorCode);
         });
     }
 
