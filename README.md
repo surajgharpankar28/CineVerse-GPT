@@ -13,7 +13,9 @@
 - Created Redux Store with userSlice
 - Implemented Sign Out
 - Update Profile
-- Fetch from TMDB Movies API
+- BugFix 
+  - Sign Up user Displayname
+  - if the user is not logged in redirect /browse to login page and vice-versa
 
 
 # Features

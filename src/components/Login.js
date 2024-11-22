@@ -7,13 +7,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/slices/userSlice";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const toggleSignUpForm = () => {
@@ -61,9 +59,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-
-              // Navigate to the "/browse" page after successful sign-up.
-              navigate("/browse");
               console.log("Sign Up Success");
             })
             .catch((error) => {
@@ -89,10 +84,6 @@ const Login = () => {
         .then((userCredential) => {
           // Retrieve the signed-in user object.
           const user = userCredential.user; // eslint-disable-line
-
-          // Navigate to the "/browse" page after successful sign-in.
-          console.log("Login Success");
-          navigate("/browse");
         })
         .catch((error) => {
           // Handle errors during the sign-in process (e.g., incorrect password).
