@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import userIcon from "../assests/images/userIcon.jpg";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/slices/userSlice";
+import { redUserIcon } from "../utils/constants";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,8 +30,15 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         //when user signIn/signUp
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
         // Navigate to the "/browse" page after successful sign-up.
         navigate("/browse");
       } else {
@@ -52,7 +59,7 @@ const Header = () => {
       </h1>
       {user && (
         <div className="flex p-2 my-auto">
-          <img className="w-8 h-8 mr-2" src={userIcon} alt="usericon" />
+          <img className="w-8 h-8 mr-2" src={user.photoURL} alt="usericon" />
           {/* <p>{user.displayName}</p> */}
           <button className="text-white" onClick={handleSignOut}>
             Sign Out

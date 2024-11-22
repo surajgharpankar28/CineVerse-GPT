@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
@@ -9,20 +10,32 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/slices/userSlice";
+import {
+  redUserIcon,
+  blueUserIcon,
+  greenUserIcon,
+  yellowUserIcon,
+  mapErrorMessage,
+} from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(yellowUserIcon); // Track the selected image
 
   const toggleSignUpForm = () => {
     setisSignInForm(!isSignInForm);
+    setErrorMessage(null);
   };
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
-  const [errorMessage, setErrorMessage] = useState(null);
+  const handleUserIconSelect = (image) => {
+    setSelectedImage(image);
+  };
 
   const handleButtonClick = () => {
     // Validate the email and password fields using the checkValidData utility.
@@ -50,27 +63,35 @@ const Login = () => {
           // Update the user's profile with the provided name.
           updateProfile(user, {
             displayName: name.current.value,
+            photoURL: selectedImage || redUserIcon, // Pass the selected image URL
           })
             .then(() => {
               // After successfully updating the profile, extract the current user's details.
-              const { uid, email, displayName } = auth.currentUser;
+              const { uid, email, displayName, photoURL } = auth.currentUser;
 
               // Dispatch the user details to a Redux store (or other state management tool).
               dispatch(
-                addUser({ uid: uid, email: email, displayName: displayName })
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
               );
               console.log("Sign Up Success");
             })
             .catch((error) => {
               // Handle any errors that occur while updating the profile.
-              setErrorMessage(error.message);
+              setErrorMessage("Failed to update profile: " + error.message);
             });
         })
         .catch((error) => {
           // Handle errors during the sign-up process (e.g., invalid email, weak password).
+
           const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          //mapErrorMessage is in constants.js
+          const errorMessage = mapErrorMessage(errorCode, error.message); // Map error to user-friendly message
+          setErrorMessage(errorMessage);
         });
     }
     // If the user is signing in (isSignInForm is true):
@@ -88,11 +109,9 @@ const Login = () => {
         .catch((error) => {
           // Handle errors during the sign-in process (e.g., incorrect password).
           const errorCode = error.code;
-          const errorMessage = error.message;
-          if (errorCode === "auth/invalid-credential") {
-            setErrorMessage("invalid email/password");
-          }
-          // setErrorMessage(errorCode);
+          //mapErrorMessage is in constants.js
+          const errorMessage = mapErrorMessage(errorCode, error.message); // Map error to user-friendly message
+          setErrorMessage(errorMessage);
         });
     }
 
@@ -112,12 +131,50 @@ const Login = () => {
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
           {!isSignInForm ? (
-            <input
-              ref={name}
-              type="text"
-              placeholder="Full Name"
-              className="p-4 my-4 w-full bg-gray-700"
-            />
+            <>
+              <input
+                ref={name}
+                type="text"
+                placeholder="Full Name"
+                className="p-4 my-4 w-full bg-gray-700"
+              />
+              <div className="flex justify-between px-5">
+                <img
+                  className={`w-8 h-8 mr-2 cursor-pointer ${
+                    selectedImage === yellowUserIcon &&
+                    "border-2 border-blue-500"
+                  }`}
+                  src={yellowUserIcon}
+                  alt="Yellow User Icon"
+                  onClick={() => handleUserIconSelect(yellowUserIcon)}
+                />
+                <img
+                  className={`w-8 h-8 mr-2 cursor-pointer ${
+                    selectedImage === redUserIcon && "border-2 border-blue-500"
+                  }`}
+                  src={redUserIcon}
+                  alt="Red User Icon"
+                  onClick={() => handleUserIconSelect(redUserIcon)}
+                />
+                <img
+                  className={`w-8 h-8 mr-2 cursor-pointer ${
+                    selectedImage === blueUserIcon && "border-2 border-blue-500"
+                  }`}
+                  src={blueUserIcon}
+                  alt="Blue User Icon"
+                  onClick={() => handleUserIconSelect(blueUserIcon)}
+                />
+                <img
+                  className={`w-8 h-8 mr-2 cursor-pointer ${
+                    selectedImage === greenUserIcon &&
+                    "border-2 border-blue-500"
+                  }`}
+                  src={greenUserIcon}
+                  alt="Green User Icon"
+                  onClick={() => handleUserIconSelect(greenUserIcon)}
+                />
+              </div>
+            </>
           ) : (
             ""
           )}

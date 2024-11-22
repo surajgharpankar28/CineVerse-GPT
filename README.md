@@ -17,6 +17,7 @@
   - Sign Up user Displayname
   - if the user is not logged in redirect /browse to login page and vice-versa
 - unsubscribed to the onAuthStateChange callback
+- added user icon selection option
 
 # Features
 -   Login/Sign Up
