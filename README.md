@@ -34,7 +34,7 @@
 - Made Browse page amazing with Tailwind CSS
 - made custom hooks to get nowPlaying,Popular,ToRated, Upcoming movies data
 - added GPT Search Bar
-
+- used "tailwind-scrollbar-hide" Plugin to hide scroll-bar in movies list cards
 # Features
 -   Login/Sign Up
     -   Login/Sign Up Form

@@ -4,7 +4,7 @@ import { cilMediaPlay, cilInfo } from "@coreui/icons";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="absolute w-screen aspect-video pt-[20%] px-24 text-white bg-gradient-to-r from-black">
+    <div className="absolute w-screen aspect-video pt-[20%] px-24 text-white bg-gradient-to-r from-black h-[100vh]">
       <h1 className="text-white text-6xl font-bold">{title}</h1>
       <p className=" text-white pt-4 text-lg w-1/3">
         {overview.slice(0, 300) + "..."}

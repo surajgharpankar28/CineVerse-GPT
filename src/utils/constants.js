@@ -37,10 +37,12 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOGVlOTg4N2NhM2NmZjQ5ZDUzODE0ZjA2ZTg0NjEyZiIsIm5iZiI6MTczMjI2OTIwMS44OTg4NzUsInN1YiI6IjY3NDA1MjQzZGFlMmU2YTkzODI1NWNiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Jx3HF0kOPdou0O45MHOOkxFJElZsvbNX6lmi3XuEyxQ",
+    Authorization: process.env.REACT_APP_TMDB_API_KEY,
   },
 };
 
 //IMG CDN for TMDB
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const GOOGLE_GEMINI_API_KEY =
+  process.env.REACT_APP_GOOGLE_GEMINI_API_KEY;

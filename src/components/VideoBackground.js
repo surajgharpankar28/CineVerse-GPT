@@ -10,7 +10,7 @@ const VideoBackground = ({ movieId }) => {
   return (
     <div className="w-screen">
       <iframe
-        className="w-screen aspect-video"
+        className="w-screen aspect-video h-[100vh]"
         src={`https://www.youtube.com/embed/${trailerVideo?.key}`}
         // To remove all logos, controls, and autoplay on mute, use below
         // src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&controls=0&modestbranding=1&rel=0&autohide=1&mute=1`}

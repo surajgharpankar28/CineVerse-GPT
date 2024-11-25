@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { cilSearch } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 import React, { useState } from "react";
+import { GOOGLE_GEMINI_API_KEY } from "../utils/constants";
 
 const GptSearchBar = () => {
   const handleSubmit = () => {};
