@@ -16,12 +16,12 @@ const Browse = () => {
   const upcomingMovies = useUpcomingMovies();
   const topRatedMovies = useTopRatedMovies();
 
-  const gptView = useSelector((store) => store.gpt.showGptSearch);
+  const gptData = useSelector((store) => store.gpt);
 
   return (
     <>
       <Header />
-      {gptView ? (
+      {gptData.showGptSearch ? (
         <GptSearchPage />
       ) : (
         <>

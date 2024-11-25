@@ -62,12 +62,12 @@ const Header = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex px-12 z-10 justify-between w-screen absolute bg-gradient-to-b from-black ">
-      <h1 className="bebas-neue-regular text-yellow-400 text-[5rem] px-4">
+    <div className="flex flex-col px-8 justify-between w-screen bg-orange-500 z-50 absolute sm:bg-blue-900 md:bg-green-500 md:flex-row mx-auto">
+      <h1 className="bebas-neue-regular text-yellow-400 text-[5rem] px-4 mx-auto md:mx-0">
         CINEVERSE
       </h1>
       {user && (
-        <div className="flex p-2 my-auto">
+        <div className="flex p-2 my-auto mx-auto md:mx-0">
           <button
             className="bg-purple-700 text-white mx-2 px-2 rounded-md"
             onClick={handleGptSearchClick}
