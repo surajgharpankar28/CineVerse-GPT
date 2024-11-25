@@ -125,7 +125,7 @@ const Login = () => {
       <div className="fullscreen-bg flex justify-center">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="bg-black bg-opacity-80 relative m-auto p-8 w-[25%] text-white transition-all duration-300 ease-in transform hover:scale-105"
+          className="bg-black bg-opacity-80 mt-[15%]  relative md:m-auto p-8 md:w-[50%] w-[90%] text-white transition-all duration-300 ease-in transform hover:scale-105"
         >
           <h1 className="font-bold mt-4 mb-2 text-2xl">
             {isSignInForm ? "Sign In" : "Sign Up"}
@@ -138,7 +138,7 @@ const Login = () => {
                 placeholder="Full Name"
                 className="p-4 my-4 w-full bg-gray-700"
               />
-              <div className="flex justify-between px-5">
+              <div className="flex justify-start">
                 <img
                   className={`w-8 h-8 mr-2 cursor-pointer ${
                     selectedImage === yellowUserIcon &&

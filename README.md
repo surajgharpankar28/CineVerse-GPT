@@ -35,6 +35,11 @@
 - made custom hooks to get nowPlaying,Popular,ToRated, Upcoming movies data
 - added GPT Search Bar
 - used "tailwind-scrollbar-hide" Plugin to hide scroll-bar in movies list cards
+- Gemini API Key
+- GPT Search API Call
+- implement GPT search response to display suggested Movie's Card
+- Made site responsive
+  
 # Features
 -   Login/Sign Up
     -   Login/Sign Up Form
