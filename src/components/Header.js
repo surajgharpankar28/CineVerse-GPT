@@ -52,7 +52,7 @@ const Header = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex z-10 justify-between w-screen absolute bg-gradient-to-b from-black ">
+    <div className="flex px-12 z-10 justify-between w-screen absolute bg-gradient-to-b from-black ">
       <h1 className="bebas-neue-regular text-yellow-400 text-[5rem] px-4">
         CINEVERSE
       </h1>

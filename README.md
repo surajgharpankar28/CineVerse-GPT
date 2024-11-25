@@ -27,6 +27,12 @@
 - Custom Hooks for trailer video
 - updated store with trailer video data
 - Embedded the Youtube video
+- Build SecondaryContainer
+- Build Movie List
+- Build Movie Card
+- TMDB Image CDN URL
+- Made Browse page amazing with Tailwind CSS
+- made custom hooks to get nowPlaying,Popular,ToRated, Upcoming movies data
 
 # Features
 -   Login/Sign Up
