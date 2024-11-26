@@ -74,9 +74,50 @@ To get started with CineVerse-GPT, follow these steps:
    - Register for an account at [TMDB](https://www.themoviedb.org/).
    - Get your API key and add it to the environment variables in `.env`.
 
-   ```env
-   REACT_APP_TMDB_API_KEY=your-tmdb-api-key
-   ```
+## Environment Variables
+
+The project uses environment variables to manage API keys and other sensitive information. Ensure you add the following variables to your `.env` file:
+
+### Required Environment Variables
+
+1. **Google Gemini API Key**:  
+   - Add your Google Gemini API key to `.env` as:
+     ```env
+     VITE_GOOGLE_GEMINI_API_KEY=your-google-gemini-api-key
+     ```
+   - Accessed in the project via `constants.jsx`.
+
+2. **TMDB API Key**:  
+   - Add your TMDB API key to `.env` as:
+     ```env
+     VITE_TMDB_API_KEY=your-tmdb-api-key
+     ```
+   - Accessed in the project via `constants.jsx`.
+
+3. **Firebase Configuration**:  
+   - Add your Firebase configuration as environment variables in `.env`:
+     ```env
+     VITE_FIREBASE_API_KEY=your-firebase-api-key
+     ```
+   - Accessed in the project via `firebase.jsx`.
+
+### Configuration Files
+
+- **`constants.jsx`**:
+  - This file imports `VITE_GOOGLE_GEMINI_API_KEY` and `VITE_TMDB_API_KEY` from the `.env` file to manage external API calls.
+
+- **`firebase.jsx`**:
+  - This file imports Firebase configuration variables (e.g., `VITE_FIREBASE_API_KEY`) from the `.env` file to initialize Firebase.
+
+### Example `.env` File
+
+Here’s an example `.env` setup for reference:
+```env
+VITE_GOOGLE_GEMINI_API_KEY=your-google-gemini-api-key
+VITE_TMDB_API_KEY=your-tmdb-api-key
+VITE_FIREBASE_API_KEY=your-firebase-api-key
+```
+
 
 5. **Run the app:**
 
