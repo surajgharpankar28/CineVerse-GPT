@@ -2,7 +2,7 @@
 
 CineVerse-GPT is a movie browsing web application built with React, Tailwind CSS, and integrated with Firebase authentication and the TMDB (The Movie Database) API. The app allows users to sign up, log in, browse movies, watch trailers, and get movie recommendations powered by GPT.
 
-### View Project[https://cineverse-gpt.vercel.app/]
+### [CineVerse-GPT Live Demo](https://cineverse-gpt.vercel.app/)
 
 ## Features
 
