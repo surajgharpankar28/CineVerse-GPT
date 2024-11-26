@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
-import GeminiLoader from "./geminiLoader";
+import GeminiLoader from "./GeminiLoader";
 
 const GptMovieSuggestions = () => {
   const { movieNames, movieResults, isLoading } = useSelector(
