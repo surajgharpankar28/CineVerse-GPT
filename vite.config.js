@@ -7,4 +7,5 @@ export default defineConfig({
   build: {
     outDir: "dist", // Default directory for built assets
   },
+  base: "/", // Set this to the subdirectory name if you're deploying to a subfolder, else leave as "/"
 });
