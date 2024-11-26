@@ -24,12 +24,12 @@ const generationConfig = {
 async function geminiResponse(prompt) {
   try {
     // Ensure prompt is valid
-    if (!prompt || typeof prompt !== "string") {
+    if (!prompt || typeof prompt !== "string" || prompt.trim() === "") {
       throw new Error("Invalid prompt: Prompt must be a non-empty string.");
     }
 
     // Start a new chat session
-    const chatSession = model.startChat({
+    const chatSession = await model.startChat({
       generationConfig,
       history: [],
     });
@@ -42,21 +42,19 @@ async function geminiResponse(prompt) {
     const result = await chatSession.sendMessage(prompt);
 
     // Validate response structure
-    if (
-      !result ||
-      !result.response ||
-      typeof result.response.text !== "function"
-    ) {
+    if (!result || !result.response || !result.response.text) {
       throw new Error("Unexpected API response structure.");
     }
 
-    const resultText = result.response.text();
+    // Ensure text is available and process the response
+    const resultText = await result.response.text();
     if (!resultText) {
       throw new Error("Empty response received from API.");
     }
 
-    // Process the result
-    const gptMovies = resultText.split(",");
+    // Process the result into an array of movies (assuming response is comma-separated)
+    const gptMovies = resultText.split(",").map((movie) => movie.trim());
+
     console.log(gptMovies);
 
     // Return the array of movies

@@ -5,20 +5,43 @@ import { useEffect } from "react";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
-
   const nowPlayMovies = useSelector((store) => store.movies.nowPlayingMovies);
 
   const getNowPlayingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      API_OPTIONS
-    );
-    const json = await data.json();
-    dispatch(addNowPlayingMovies(json.results));
+    try {
+      // Fetch Now Playing Movies
+      const response = await fetch(
+        "https://api.themoviedb.org/3/movie/now_playing?page=1",
+        API_OPTIONS
+      );
+
+      // Check if the response is OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Parse JSON
+      const json = await response.json();
+
+      // Validate and dispatch results
+      if (json && json.results) {
+        dispatch(addNowPlayingMovies(json.results));
+      } else {
+        console.warn(
+          "Invalid data structure: Missing 'results' in API response."
+        );
+      }
+    } catch (error) {
+      // Log errors
+      console.error("Error fetching now playing movies:", error.message);
+    }
   };
 
   useEffect(() => {
-    !nowPlayMovies && getNowPlayingMovies();
+    // Fetch only if no data is available
+    if (!nowPlayMovies || nowPlayMovies.length === 0) {
+      getNowPlayingMovies();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

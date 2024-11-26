@@ -8,16 +8,40 @@ const useUpcomingMovies = () => {
   const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
 
   const getUpcomingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
-      API_OPTIONS
-    );
-    const json = await data.json();
-    dispatch(addUpcomingMovies(json.results));
+    try {
+      // Fetch Upcoming Movies
+      const response = await fetch(
+        "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+        API_OPTIONS
+      );
+
+      // Check if the response is OK
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Parse JSON response
+      const json = await response.json();
+
+      // Validate and dispatch results
+      if (json && json.results) {
+        dispatch(addUpcomingMovies(json.results));
+      } else {
+        console.warn(
+          "Invalid data structure: Missing 'results' in API response."
+        );
+      }
+    } catch (error) {
+      // Handle fetch errors
+      console.error("Error fetching upcoming movies:", error.message);
+    }
   };
 
   useEffect(() => {
-    !upcomingMovies && getUpcomingMovies();
+    // Fetch only if no data is available
+    if (!upcomingMovies || upcomingMovies.length === 0) {
+      getUpcomingMovies();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

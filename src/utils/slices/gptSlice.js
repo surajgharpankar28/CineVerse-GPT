@@ -4,19 +4,19 @@ const gptSlice = createSlice({
   name: "gpt",
   initialState: {
     showGptSearch: false,
-    movieNames: null,
-    movieResults: null,
-    searchValue: null,
+    movieNames: [], // Set to empty array instead of null
+    movieResults: [], // Set to empty array instead of null
+    searchValue: "", // Set to empty string instead of null
   },
   reducers: {
-    toggleGptSearchView: (state, action) => {
+    toggleGptSearchView: (state) => {
       state.showGptSearch = !state.showGptSearch;
     },
     addGptMovies: (state, action) => {
       const { movieNames, movieResults, searchValue } = action.payload;
-      state.movieNames = movieNames;
-      state.movieResults = movieResults;
-      state.searchValue = searchValue;
+      state.movieNames = Array.isArray(movieNames) ? movieNames : [];
+      state.movieResults = Array.isArray(movieResults) ? movieResults : [];
+      state.searchValue = typeof searchValue === "string" ? searchValue : "";
     },
   },
 });
