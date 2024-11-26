@@ -16,7 +16,7 @@
 }
 
 .fullscreen-bg {
-  background-image: url("/public/body_bg.jpg"); /* Reference image from the public folder */
+  background-image: url("body_bg.jpg"); /* Reference image from the public folder */
   background-size: cover; /* Cover the whole screen */
   background-position: center; /* Center the background */
   background-repeat: no-repeat; /* Prevent background from repeating */
