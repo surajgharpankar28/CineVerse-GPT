@@ -1,10 +1,16 @@
 {
   "hosting": {
-    "public": "dist",  // Update to Vite's default build output folder
+    "public": "dist",  // This should be the output directory of your Vite build
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
