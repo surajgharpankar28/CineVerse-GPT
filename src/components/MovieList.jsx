@@ -39,7 +39,7 @@ const MovieList = ({ title, movies }) => {
               {movies?.map((movie) => (
                 <div
                   key={movie.id}
-                  className="snap-start" // Ensure each MovieCard snaps individually
+                  className="snap-start transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   <MovieCard
                     title={movie.title}
