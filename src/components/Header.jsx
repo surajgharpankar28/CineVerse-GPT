@@ -63,27 +63,48 @@ const Header = () => {
 
   return (
     // sm:bg-blue-900 md:bg-green-500
-    <div className="flex flex-col px-8 justify-between w-screen bg-transparent z-50 absolute  md:flex-row mx-auto">
-      <h1 className="bebas-neue-regular text-yellow-400 text-[5rem] px-4 mx-auto md:mx-0">
+    <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-12 py-4 bg-transparent shadow-lg z-50 absolute">
+      {/* Logo Section */}
+      <h1 className="text-yellow-400 text-4xl md:text-6xl font-bold tracking-wide bebas-neue-regular">
         CINEVERSE
       </h1>
+
+      {/* User Section */}
       {user && (
-        <div className="flex pb-1 md:p-2 my-auto mx-auto md:mx-0">
+        <div className="flex items-center space-x-6 mt-4 md:mt-0">
+          {/* GPT Button */}
           <button
-            className="bg-purple-700 text-white mx-2 px-2 rounded-md"
+            className="flex bg-gradient-to-l from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-semibold text-sm md:text-md px-4 py-2 rounded-lg shadow-md transition-all duration-300"
             onClick={handleGptSearchClick}
           >
-            {gptView ? "Homepage" : "GPT Search"}
+            {gptView ? (
+              "Homepage"
+            ) : (
+              <span className="flex items-center">
+                <img
+                  className="w-5 h-5 mr-2"
+                  src="/gemini_icon.png"
+                  alt="Gemini Icon"
+                />
+                GPT Search
+              </span>
+            )}
           </button>
-          <img
-            className="w-8 h-8 mr-2 rounded-md"
-            src={user.photoURL}
-            alt="usericon"
-          />
-          {/* <p>{user.displayName}</p> */}
-          <button className="text-white" onClick={handleSignOut}>
-            Sign Out
-          </button>
+
+          {/* User Profile */}
+          <div className="flex items-center space-x-3">
+            <img
+              className="w-9 h-9 md:w-9 md:h-9 rounded-lg border-2 border-yellow-400 shadow-md"
+              src={user.photoURL}
+              alt="User Profile"
+            />
+            <button
+              className="text-gray-300 hover:text-yellow-400 font-medium text-sm md:text-md transition-all duration-200"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       )}
     </div>

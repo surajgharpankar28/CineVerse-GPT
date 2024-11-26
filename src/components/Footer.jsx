@@ -3,8 +3,8 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="footer w-full bg-black shadow ">
-      <div className="px-12 mx-auto py-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="md:px-12 mx-auto py-4">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2">
           {/* Brand and Copyright */}
           <div className="text-white text-sm">
             © {new Date().getFullYear()}{" "}
