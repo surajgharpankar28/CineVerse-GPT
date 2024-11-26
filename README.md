@@ -39,6 +39,11 @@
 - GPT Search API Call
 - implement GPT search response to display suggested Movie's Card
 - Made site responsive
+- Faced build issues in CRA, so migrated to Vite
+- Changes file and folder structure as per Vite requirement
+- Added Gemini Shimmer Loader
+- Made UI responsive
+- added suggestion chips for GPT search
   
 # Features
 -   Login/Sign Up

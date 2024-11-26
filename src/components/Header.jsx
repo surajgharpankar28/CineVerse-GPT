@@ -63,7 +63,7 @@ const Header = () => {
 
   return (
     // sm:bg-blue-900 md:bg-green-500
-    <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-12 py-4 bg-black shadow-lg z-50 absolute">
+    <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-12 py-4 bg-transparent shadow-lg z-50 absolute">
       {/* Logo Section */}
       <h1 className="text-yellow-400 text-4xl md:text-6xl font-bold tracking-wide bebas-neue-regular">
         CINEVERSE
