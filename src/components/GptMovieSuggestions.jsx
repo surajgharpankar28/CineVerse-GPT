@@ -7,7 +7,7 @@ const GptMovieSuggestions = () => {
     (store) => store.gpt
   );
 
-  if (!movieNames) return null;
+  if (!movieNames || movieNames.length === 0) return null;
 
   return (
     <div>

@@ -32,11 +32,12 @@ const MovieList = ({ title, movies }) => {
       >
         <div className="flex">
           {movies?.map((movie) => (
-            <MovieCard
+            <div
               key={movie.id}
-              title={movie.title}
-              posterPath={movie.poster_path}
-            />
+              className="snap-start" // Ensure each MovieCard snaps individually
+            >
+              <MovieCard title={movie.title} posterPath={movie.poster_path} />
+            </div>
           ))}
         </div>
       </div>
