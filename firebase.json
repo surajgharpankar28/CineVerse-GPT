@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "dist",  // Update to Vite's default build output folder
     "ignore": [
       "firebase.json",
       "**/.*",
