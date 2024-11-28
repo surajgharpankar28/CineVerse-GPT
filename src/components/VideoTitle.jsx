@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { CIcon } from "@coreui/icons-react";
 import { cilMediaPlay, cilInfo } from "@coreui/icons";
