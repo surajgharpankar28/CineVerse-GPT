@@ -1,12 +1,16 @@
 //User Icons
-export const redUserIcon =
-  "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp";
-export const yellowUserIcon =
-  "https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp";
-export const blueUserIcon =
-  "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.webp";
-export const greenUserIcon =
-  "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-dyrp6bw6adbulg5b.webp";
+// export const redUserIcon =
+//   "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.webp";
+// export const yellowUserIcon =
+//   "https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp";
+// export const blueUserIcon =
+//   "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.webp";
+// export const greenUserIcon =
+//   "https://wallpapers.com/images/high/netflix-profile-pictures-1000-x-1000-dyrp6bw6adbulg5b.webp";
+export const redUserIcon = "/userIcons/redUserIcon.jpg";
+export const yellowUserIcon = "/userIcons/yellowUserIcon.jpg";
+export const blueUserIcon = "/userIcons/blueUserIcon.jpg";
+export const greenUserIcon = "/userIcons/greenUserIcon.jpg";
 
 //   FireBase Error message
 export const mapErrorMessage = (errorCode, defaultMessage) => {
