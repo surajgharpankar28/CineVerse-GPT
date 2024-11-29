@@ -40,3 +40,7 @@
   flex: 1; /* Allows the content to take up all available space */
   overflow-y: auto; /* Enables scrolling for the content only */
 }
+
+.overflow-clip {
+  clip-path: inset(0);
+}
