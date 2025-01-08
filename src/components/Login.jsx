@@ -38,6 +38,11 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
+    // Validate display name first if it's a sign-up form
+    if (!isSignInForm && !name.current.value.trim()) {
+      setErrorMessage("Display name cannot be empty.");
+      return;
+    }
     // Validate the email and password fields using the checkValidData utility.
     // If the fields are invalid, display an error message and exit the function.
     const message = checkValidData(email.current.value, password.current.value);
@@ -51,6 +56,7 @@ const Login = () => {
     // If the user is signing up (isSignInForm is false):
     if (!isSignInForm) {
       // Create a new user with the provided email and password using Firebase Authentication.
+
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -62,7 +68,7 @@ const Login = () => {
 
           // Update the user's profile with the provided name.
           updateProfile(user, {
-            displayName: name.current.value,
+            displayName: name.current.value.trim(),
             photoURL: selectedImage || redUserIcon, // Pass the selected image URL
           })
             .then(() => {
