@@ -198,7 +198,7 @@ const Login = () => {
           />
           <p className="font-semibold text-red-600">{errorMessage}</p>
           {!isSignInForm ? (
-            <small class="text-gray-500">
+            <small className="text-gray-500">
               <strong>Note:</strong> The password must:
               <ul className="list-disc pl-5">
                 <li>Be at least 8 characters long.</li>
