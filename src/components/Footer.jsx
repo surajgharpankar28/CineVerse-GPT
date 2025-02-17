@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -43,7 +44,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-400 transition-colors"
               >
-                <Twitter size={20} />
+                <FaXTwitter size={20} />
               </a>
               <a
                 href="mailto:surajgharpankar28@gmail.com"
