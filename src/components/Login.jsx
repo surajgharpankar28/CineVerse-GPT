@@ -17,12 +17,22 @@ import {
   yellowUserIcon,
   mapErrorMessage,
 } from "../utils/constants";
+import { Copy, Check } from "lucide-react";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(yellowUserIcon); // Track the selected image
+
+  const [copied, setCopied] = useState("");
+
+  const handleCopy = (text, type) => {
+    navigator.clipboard.writeText(text);
+    setCopied(type);
+
+    setTimeout(() => setCopied(""), 2000); // Reset message after 2 seconds
+  };
 
   const toggleSignUpForm = () => {
     setisSignInForm(!isSignInForm);
@@ -226,6 +236,45 @@ const Login = () => {
                 >
                   Sign Up Now
                 </span>
+                <div className="flex flex-col mt-4 p-4 bg-gray-100 rounded-lg shadow-md w-full max-w-full">
+                  <span className="text-base font-semibold text-gray-800 mb-2">
+                    Use the credentials below to check out the project:
+                  </span>
+
+                  {/* Email Section */}
+                  <div className="flex items-center justify-between bg-white p-2 rounded-md shadow-sm">
+                    <span className="text-gray-700">
+                      <strong>Email:</strong> checkout@gmail.com
+                    </span>
+                    <button
+                      onClick={() => handleCopy("checkout@gmail.com", "email")}
+                      className="ml-2 text-gray-600 hover:text-blue-600"
+                    >
+                      {copied === "email" ? (
+                        <Check size={18} className="text-green-600" />
+                      ) : (
+                        <Copy size={18} />
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Password Section */}
+                  <div className="flex items-center justify-between bg-white p-2 rounded-md shadow-sm mt-2">
+                    <span className="text-gray-700">
+                      <strong>Password:</strong> LetsCheck@28
+                    </span>
+                    <button
+                      onClick={() => handleCopy("LetsCheck@28", "password")}
+                      className="ml-2 text-gray-600 hover:text-blue-600"
+                    >
+                      {copied === "password" ? (
+                        <Check size={18} className="text-green-600" />
+                      ) : (
+                        <Copy size={18} />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </>
             ) : (
               <>
